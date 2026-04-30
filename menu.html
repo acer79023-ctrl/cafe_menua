@@ -1,0 +1,1342 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Menu | Five Slash</title>
+
+  <!-- SEO / Share -->
+  <meta name="description" content="قائمة Five Slash الرقمية — اكتشف مشروباتنا وحلوياتنا بتجربة فخمة وسريعة." />
+  <meta property="og:title" content="Five Slash Menu" />
+  <meta property="og:description" content="قائمة رقمية فاخرة — اختر واطلب بسهولة." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0b0b0e" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root{
+      --bg:#050506;
+      --panel:#0b0b0e;
+      --card:#111114;
+      --card2:#0f0f12;
+
+      --border:rgba(255,215,128,.22);
+      --border2:rgba(255,215,128,.12);
+
+      --text:#f5f3ea;
+      --muted:rgba(245,243,234,.70);
+      --muted2:rgba(245,243,234,.55);
+
+      --gold:#d9b15f;
+      --gold2:#f1d28a;
+      --gold3:#b89446;
+      --glow:rgba(217,177,95,0.22);
+
+      --shadow: 0 18px 55px rgba(0,0,0,.82);
+      --shadow2: 0 10px 28px rgba(0,0,0,.55);
+      --radius:18px;
+      --radius2:14px;
+      --transition: all 260ms cubic-bezier(.2,.9,.2,1);
+    }
+
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    html,body{ height:100%; }
+    body{
+      font-family:'Cairo', system-ui, -apple-system, Tahoma, Arial, sans-serif;
+      color:var(--text);
+      background: radial-gradient(1100px 600px at 20% 10%, rgba(217,177,95,.13), transparent 60%),
+                  radial-gradient(900px 520px at 90% 80%, rgba(241,210,138,.10), transparent 62%),
+                  linear-gradient(180deg, #0b0b0e 0%, #050506 100%);
+      overflow-x:hidden;
+    }
+    a{ text-decoration:none; color:inherit; }
+    button, input, select{ font-family:inherit; }
+    ::selection{ background: rgba(217,177,95,.28); }
+
+    .lux-bg{
+      position:fixed;
+      inset:-80px;
+      pointer-events:none;
+      opacity:.9;
+      filter: blur(12px);
+      z-index:-1;
+    }
+    .lux-bg::before,
+    .lux-bg::after{
+      content:"";
+      position:absolute;
+      width:520px; height:520px;
+      border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, rgba(217,177,95,.28), transparent 60%);
+      animation: floaty 10s ease-in-out infinite;
+    }
+    .lux-bg::after{
+      width:680px; height:680px;
+      right:10%; top:18%;
+      background: radial-gradient(circle at 30% 30%, rgba(241,210,138,.18), transparent 62%);
+      animation-duration: 14s;
+      animation-delay: -4s;
+    }
+    .lux-bg::before{
+      left:8%; bottom:8%;
+      animation-delay:-2s;
+    }
+    @keyframes floaty{
+      0%,100%{ transform: translate3d(0,0,0) scale(1); }
+      50%{ transform: translate3d(18px,-22px,0) scale(1.06); }
+    }
+
+    .wrap{ max-width:1200px; margin:0 auto; padding:20px; }
+
+    .topbar{
+      position:sticky; top:0; z-index:1200;
+      background: rgba(5,5,6,.78);
+      backdrop-filter: blur(16px) saturate(170%);
+      border-bottom:1px solid var(--border2);
+      box-shadow: 0 6px 24px rgba(0,0,0,.45);
+    }
+    .topbar .wrap{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px; padding:12px 20px;
+    }
+
+    .brand{
+      display:flex; align-items:center; gap:14px;
+      min-width: 240px;
+      transition: var(--transition);
+    }
+    .brand:hover{ transform: translateY(-2px); }
+
+    .logo{
+      width:54px; height:54px; border-radius:16px;
+      padding:2px;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      box-shadow: 0 0 26px var(--glow), var(--shadow2);
+      overflow:hidden;
+      position:relative;
+      flex:0 0 auto;
+    }
+    .logo::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,.18), transparent);
+      transform: translateX(-115%);
+      pointer-events:none;
+    }
+    .brand:hover .logo::after{ animation: shine 1.35s ease; }
+    @keyframes shine{ to { transform: translateX(115%); } }
+
+    .logo img{
+      width:100%; height:100%;
+      object-fit:cover; display:block;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.25);
+    }
+    .logo .fallback{
+      width:100%; height:100%;
+      display:none; align-items:center; justify-content:center;
+      border-radius:14px;
+      font-weight:900; color:#0b0b0e;
+      background: rgba(255,255,255,.35);
+      border:1px solid rgba(255,255,255,.12);
+    }
+
+    .brand h1{
+      font-size:20px; font-weight:900;
+      background: linear-gradient(90deg, var(--gold), var(--gold2));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      background-clip:text;
+      letter-spacing:.2px;
+    }
+    .brand p{
+      margin-top:2px;
+      font-size:13px;
+      color:var(--muted);
+    }
+
+    .search-container{ flex:1; max-width:460px; min-width:260px; }
+    .search{
+      display:flex; align-items:center; gap:12px;
+      padding:12px 16px;
+      border-radius:16px;
+      border:1px solid var(--border2);
+      background: rgba(255,255,255,.05);
+      transition: var(--transition);
+    }
+    .search:focus-within{
+      border-color: rgba(217,177,95,.55);
+      box-shadow: 0 0 0 3px rgba(217,177,95,.10), 0 0 22px rgba(217,177,95,.12);
+      background: rgba(255,255,255,.07);
+    }
+    .search i{ color:var(--gold2); font-size:16px; opacity:.95; }
+    .search input{
+      width:100%;
+      border:0; outline:0;
+      background:transparent;
+      color:var(--text);
+      font-size:15px;
+    }
+    .search input::placeholder{ color:var(--muted2); }
+
+    .actions{
+      display:flex; align-items:center; gap:10px;
+      flex: 0 0 auto;
+    }
+    .btn{
+      border:1px solid var(--border);
+      background: linear-gradient(135deg, rgba(217,177,95,0.12), rgba(241,210,138,0.06));
+      color:var(--gold2);
+      padding:12px 16px;
+      border-radius:14px;
+      cursor:pointer;
+      font-weight:800;
+      font-size:14px;
+      display:flex; align-items:center; gap:8px;
+      transition: var(--transition);
+      white-space:nowrap;
+      box-shadow: 0 0 0 rgba(0,0,0,0);
+    }
+    .btn:hover{
+      transform: translateY(-2px);
+      border-color: rgba(217,177,95,.65);
+      box-shadow: 0 10px 24px rgba(217,177,95,.10);
+      background: linear-gradient(135deg, rgba(217,177,95,0.18), rgba(241,210,138,0.10));
+    }
+    .btn.ghost{
+      background: rgba(255,255,255,.04);
+      border-color: var(--border2);
+      color: var(--text);
+      opacity:.95;
+    }
+    .btn.ghost:hover{
+      border-color: rgba(217,177,95,.45);
+      background: rgba(255,255,255,.06);
+    }
+
+    .hero{
+      margin-top:22px;
+      border-radius: var(--radius);
+      border:1px solid var(--border2);
+      background: rgba(255,255,255,.03);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      top:-70px; right:-80px;
+      width:280px; height:280px;
+      border-radius:50%;
+      background: radial-gradient(circle, rgba(217,177,95,.16), transparent 70%);
+      pointer-events:none;
+    }
+    .hero::after{
+      content:"";
+      position:absolute;
+      left:-80px; bottom:-90px;
+      width:320px; height:320px;
+      border-radius:50%;
+      background: radial-gradient(circle, rgba(241,210,138,.12), transparent 68%);
+      pointer-events:none;
+    }
+    .hero-inner{
+      padding:22px;
+      display:grid;
+      grid-template-columns: 1fr auto;
+      gap:18px;
+      align-items:center;
+      position:relative;
+      z-index:1;
+    }
+    .hero h2{
+      font-size:28px; font-weight:900;
+      color:var(--text);
+      margin-bottom:8px;
+    }
+    .hero p{
+      color:var(--muted);
+      line-height:1.8;
+      max-width: 760px;
+      font-size:16px;
+    }
+
+    .hero-stats{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-start;
+      align-items:center;
+    }
+    .stat{
+      border-radius: 999px;
+      border:1px solid var(--border2);
+      background: rgba(0,0,0,.18);
+      padding:8px 12px;
+      display:flex; gap:8px; align-items:center;
+      color: var(--muted);
+      font-weight:800;
+      white-space:nowrap;
+    }
+    .stat i{ color: var(--gold2); }
+    .stat b{ color: var(--text); }
+
+    .chips-wrap{
+      padding:0 22px 16px;
+      position:relative;
+      z-index:2;
+    }
+    .tools{
+      margin-top:16px;
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .select{
+      border:1px solid var(--border2);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      padding:10px 14px;
+      border-radius: 14px;
+      outline:none;
+      font-weight:800;
+      cursor:pointer;
+    }
+    .hint{
+      color: var(--muted);
+      font-weight:800;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      white-space:nowrap;
+    }
+    .hint i{ color: var(--gold2); }
+
+    .chips{
+      display:flex; gap:12px; align-items:center;
+      overflow-x:auto; overflow-y:hidden;
+      padding:10px 4px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--gold) rgba(255,255,255,0.06);
+    }
+    .chips::-webkit-scrollbar{ height:6px; }
+    .chips::-webkit-scrollbar-track{ background: rgba(255,255,255,0.06); border-radius:10px; }
+    .chips::-webkit-scrollbar-thumb{ background: var(--gold); border-radius:10px; }
+
+    .chip{
+      appearance:none;
+      border:1px solid var(--border2);
+      background: rgba(255,255,255,.04);
+      color:var(--muted);
+      height:44px;
+      padding:0 18px;
+      border-radius:999px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      font-size:14px;
+      font-weight:900;
+      line-height:1;
+      cursor:pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+      flex: 0 0 auto;
+    }
+    .chip i{ color: rgba(241,210,138,.9); opacity:.85; }
+    .chip:hover{ transform: translateY(-2px); border-color: rgba(217,177,95,.55); color: var(--text); }
+    .chip.active{
+      background: linear-gradient(135deg, rgba(217,177,95,.22), rgba(241,210,138,.12));
+      border-color: rgba(217,177,95,.75);
+      color:var(--text);
+      box-shadow: 0 10px 22px rgba(217,177,95,.14);
+    }
+
+    .sections-panel{
+      margin-top:14px;
+      border-radius: var(--radius);
+      border:1px solid var(--border2);
+      background: rgba(255,255,255,.02);
+      overflow:hidden;
+      display:none;
+    }
+    .sections-head{
+      padding:14px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.12));
+      border-bottom:1px solid rgba(255,215,128,.08);
+    }
+    .sections-head .title{
+      font-size:16px;
+      font-weight:1000;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .sections-head .title i{ color: var(--gold2); }
+    .sections-grid{
+      padding:14px;
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap:12px;
+    }
+    .sec-card{
+      border:1px solid rgba(255,215,128,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.22));
+      border-radius: 16px;
+      padding:14px 12px;
+      cursor:pointer;
+      transition: var(--transition);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      min-height:74px;
+    }
+    .sec-card:hover{
+      transform: translateY(-2px);
+      border-color: rgba(217,177,95,.55);
+      box-shadow: 0 12px 26px rgba(0,0,0,.55), 0 0 20px rgba(217,177,95,.10);
+    }
+    .sec-left{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      min-width:0;
+    }
+    .sec-name{
+      font-weight:1000;
+      font-size:14px;
+      color: var(--text);
+      line-height:1.25;
+
+      display:-webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow:hidden;
+
+      word-break: break-word;
+    }
+    .sec-count{
+      font-weight:900;
+      font-size:12px;
+      color: var(--muted);
+    }
+    .sec-ico{
+      width:40px;
+      height:40px;
+      border-radius: 14px;
+      border:1px solid rgba(255,215,128,.16);
+      background: rgba(0,0,0,.22);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex: 0 0 auto;
+    }
+    .sec-ico i{
+      color: var(--gold2);
+      font-size:16px;
+      opacity:.95;
+    }
+    .sec-card.active{
+      border-color: rgba(217,177,95,.75);
+      background: linear-gradient(135deg, rgba(217,177,95,.22), rgba(241,210,138,.12));
+    }
+
+    .grid{ margin-top:12px; }
+    .section{
+      margin-top:26px;
+      border-radius: var(--radius);
+      border:1px solid var(--border2);
+      background: rgba(255,255,255,.02);
+      overflow:hidden;
+    }
+    .section-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:16px 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.10));
+      border-bottom:1px solid rgba(255,215,128,.08);
+    }
+    .section-title{
+      display:flex; align-items:center; gap:12px;
+      font-size:18px; font-weight:1000; color: var(--text);
+    }
+    .section-title .dot{
+      width:10px; height:10px; border-radius:50%;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      box-shadow: 0 0 16px var(--glow);
+    }
+    .count{
+      font-size:13px;
+      font-weight:1000;
+      padding:6px 12px;
+      border-radius:999px;
+      border:1px solid rgba(217,177,95,.22);
+      background: rgba(217,177,95,.10);
+      color: var(--gold2);
+      white-space:nowrap;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(290px, 1fr));
+      gap:18px;
+      padding:18px;
+    }
+
+    .card{
+      border-radius: var(--radius);
+      border:1px solid rgba(255,215,128,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.22));
+      overflow:hidden;
+      cursor:pointer;
+      transition: var(--transition);
+      position:relative;
+      transform-style: preserve-3d;
+    }
+    .card:hover{
+      transform: translateY(-8px) rotateX(1deg);
+      border-color: rgba(217,177,95,.55);
+      box-shadow: 0 22px 55px rgba(0,0,0,.65), 0 0 30px rgba(217,177,95,.12);
+    }
+
+    .thumb{
+  height:190px;
+  position:relative;
+  padding:14px;
+  display:flex;
+  align-items:flex-end;
+  justify-content: center;
+  overflow:hidden;
+  background: rgba(0,0,0,0.25);
+}
+
+.thumb img{
+  width:100%;
+  height:100%;
+  object-fit: contain;
+  object-position: center;
+  position: absolute;
+  top:0;
+  left:0;
+  z-index:0;
+}
+    .thumb::before{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(circle at 30% 20%, rgba(255,255,255,.12), transparent 55%);
+      opacity:.75;
+      pointer-events:none;
+    }
+    .thumb::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(to top, rgba(0,0,0,.92) 0%, transparent 56%);
+      pointer-events:none;
+    }
+
+    .tag{
+      position:relative; z-index:1;
+      display:inline-flex; align-items:center; gap:8px;
+      font-size:12px;
+      padding:6px 12px;
+      border-radius:999px;
+      background: rgba(0,0,0,.62);
+      border:1px solid rgba(217,177,95,.65);
+      color:var(--gold2);
+      font-weight:1000;
+      backdrop-filter: blur(4px);
+    }
+
+    .content{
+      padding:16px 16px 14px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      min-height: 110px; /* أقل لأننا حذفنا الوصف */
+    }
+    .title{
+      font-size:17px;
+      font-weight:1000;
+      color: var(--text);
+      line-height:1.4;
+    }
+    .meta{
+      margin-top:auto;
+      padding-top:12px;
+      border-top:1px dashed rgba(255,215,128,.16);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .price{
+      font-size:22px;
+      font-weight:1000;
+      color: var(--gold);
+      white-space:nowrap;
+      display:flex;
+      align-items:baseline;
+      gap:6px;
+    }
+    .price small{
+      font-size:12px;
+      font-weight:900;
+      color: var(--muted);
+    }
+    .badge{
+      font-size:12px;
+      font-weight:1000;
+      padding:6px 12px;
+      border-radius:999px;
+      border:1px solid rgba(217,177,95,.30);
+      background: rgba(217,177,95,.12);
+      color: var(--gold2);
+      white-space:nowrap;
+      max-width: 55%;
+      overflow:hidden;
+      text-overflow: ellipsis;
+    }
+
+    .empty{
+      text-align:center;
+      margin:28px 0 40px;
+      padding:60px 18px;
+      border:2px dashed rgba(255,215,128,.18);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.02);
+      display:none;
+    }
+    .empty i{
+      font-size:48px;
+      color: var(--gold2);
+      opacity:.6;
+      margin-bottom:18px;
+    }
+    .empty h3{
+      font-size:22px; font-weight:1000;
+      margin-bottom:10px;
+    }
+    .empty p{ color: var(--muted); line-height:1.8; max-width:560px; margin:0 auto; }
+
+    .modal-backdrop{
+      position:fixed; inset:0;
+      background: rgba(0,0,0,.90);
+      backdrop-filter: blur(10px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:3000;
+      padding:18px;
+    }
+    .modal{
+      width:min(860px, 100%);
+      border-radius: var(--radius);
+      border:1px solid rgba(217,177,95,.28);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.30));
+      box-shadow: 0 40px 90px rgba(0,0,0,.90), 0 0 50px rgba(217,177,95,.14);
+      overflow:hidden;
+      transform: translateY(10px) scale(.98);
+      animation: pop 220ms ease forwards;
+    }
+    @keyframes pop{ to{ transform: translateY(0) scale(1); } }
+    .modal-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:16px 18px;
+      border-bottom:1px solid rgba(255,215,128,.10);
+      background: rgba(0,0,0,.25);
+    }
+    .modal-top h3{
+      font-size:22px;
+      font-weight:1000;
+      color: var(--text);
+      line-height:1.4;
+    }
+    .modal-body{ padding:18px; }
+    .modal-image{
+  width:100%;
+  height:320px;
+  object-fit: contain;  /* Changed from cover to contain */
+  border-radius: var(--radius2);
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow: var(--shadow2);
+  display:block;
+  background: rgba(0,0,0,0.5);  /* Added dark background */
+  margin-bottom:14px;
+}
+    .modal-grid{
+      display:grid;
+      grid-template-columns: 1fr 240px;
+      gap:16px;
+      align-items:start;
+    }
+    .modal-side{
+      border-radius: var(--radius2);
+      border:1px solid rgba(255,215,128,.14);
+      background: rgba(255,255,255,.03);
+      padding:14px;
+    }
+    .m-price{
+      font-size:34px;
+      font-weight:1000;
+      text-align:center;
+      color: var(--gold);
+      margin-bottom:8px;
+    }
+    .m-tag{
+      text-align:center;
+      color: var(--muted);
+      font-weight:900;
+      margin-bottom:12px;
+      line-height:1.8;
+    }
+    .m-badge{
+      text-align:center;
+      border-radius: 12px;
+      padding:10px 12px;
+      font-weight:1000;
+      border:1px solid rgba(217,177,95,.32);
+      background: rgba(217,177,95,.12);
+      color: var(--gold2);
+    }
+
+    .float-stack{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      z-index:2600;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      align-items:flex-end;
+    }
+
+    .wa-box{
+      position:relative;
+      width:64px;
+      height:64px;
+      border-radius:18px;
+      background: rgba(37,211,102,.18);
+      border:1px solid rgba(37,211,102,.38);
+      box-shadow: 0 14px 30px rgba(0,0,0,.55);
+      overflow:hidden;
+    }
+    .wa-box a{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:18px;
+      background: linear-gradient(135deg, rgba(37,211,102,.22), rgba(0,0,0,.35));
+      cursor:pointer;
+      transition: var(--transition);
+    }
+    .wa-box a:hover{ transform: translateY(-2px); filter: brightness(1.05); }
+    .wa-box i{
+      font-size:26px;
+      color:#25D366;
+      text-shadow: 0 8px 24px rgba(0,0,0,.55);
+    }
+
+    .up-btn{
+      width:54px;
+      height:54px;
+      border-radius:16px;
+      border:1px solid rgba(255,215,128,.22);
+      background: rgba(0,0,0,.48);
+      color: var(--text);
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow: var(--shadow2);
+      transition: var(--transition);
+    }
+    .up-btn:hover{ transform: translateY(-2px); border-color: rgba(217,177,95,.60); }
+    .up-btn i{ font-size:18px; color: var(--gold2); }
+
+    @media(max-width:900px){
+      .topbar .wrap{ flex-wrap:wrap; }
+      .search-container{ order:3; max-width:100%; min-width:100%; }
+      .hero-inner{ grid-template-columns: 1fr; }
+      .modal-grid{ grid-template-columns: 1fr; }
+      .modal-image{ height:260px; }
+    }
+    @media(max-width:520px){
+      .wrap{ padding:14px; }
+      .hero-inner{ padding:16px; }
+      .chips-wrap{ padding:0 16px 14px; }
+
+      .search{ padding:12px 14px; border-radius:14px; }
+      .search input{ font-size:16px; }
+
+      .actions{ gap:10px; width:100%; }
+      .actions .btn{ flex:1; justify-content:center; padding:12px 14px; border-radius:14px; }
+      .select{ flex:1; }
+
+      .sections-panel{ display:block; }
+      .chips{ display:none; }
+
+      .cards{ padding:14px; gap:14px; grid-template-columns: 1fr; }
+      .thumb{ height:170px; }
+      .content{ padding:14px; }
+
+      .modal-body{ padding:14px; }
+      .modal-image{ height:240px; }
+
+      .float-stack{ right:14px; bottom:14px; }
+    }
+
+    @media (hover: none) {
+      .card:hover { transform: none; box-shadow: var(--shadow2); }
+      .btn:hover, .chip:hover, .sec-card:hover { transform: none; }
+    }
+
+    .card, .btn, .chip, .sec-card, .up-btn { touch-action: manipulation; }
+  </style>
+</head>
+
+<body>
+  <div class="lux-bg" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="wrap">
+      <a href="#" class="brand" aria-label="Five Slash Home" onclick="return false;">
+        <div class="logo">
+          <img src="logo.jpeg" alt="Five Slash Logo"
+               onerror="this.style.display='none'; this.parentNode.querySelector('.fallback').style.display='flex';" />
+          <div class="fallback">FS</div>
+        </div>
+        <div>
+          <h1>Five Slash</h1>
+          <p>القائمة الرقمية • تجربة فاخرة وسريعة</p>
+        </div>
+      </a>
+
+      <div class="search-container">
+        <div class="search">
+          <i class="fas fa-magnifying-glass"></i>
+          <input id="q" placeholder="ابحث عن منتج أو نكهة..." autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn ghost" id="btnAll" type="button" title="عرض كل الأقسام">
+          <i class="fas fa-layer-group"></i>
+          الكل
+        </button>
+        <select class="select" id="sort" title="فرز النتائج">
+          <option value="default">الفرز: افتراضي</option>
+          <option value="price-asc">السعر: من الأقل للأعلى</option>
+          <option value="price-desc">السعر: من الأعلى للأقل</option>
+          <option value="name-asc">الاسم: A → Z</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" aria-label="hero">
+      <div class="hero-inner">
+        <div>
+          <h2>قائمة Five Slash</h2>
+          <p>اكتشف تشكيلتنا المميزة من المشروبات والأطعمة. اختر ما يناسب ذوقك واستمتع بتجربة Five Slash الفريدة.</p>
+        </div>
+        <div class="hero-stats" id="stats">
+          <div class="stat"><i class="fas fa-mug-hot"></i><span>عدد المنتجات:</span> <b id="statItems">—</b></div>
+          <div class="stat"><i class="fas fa-layer-group"></i><span>الأقسام:</span> <b id="statSections">—</b></div>
+        </div>
+      </div>
+
+      <div class="chips-wrap">
+        <div class="tools">
+          <div class="hint"><i class="fas fa-wand-magic-sparkles"></i> اضغط على أي منتج لعرض التفاصيل</div>
+          <div class="hint"><i class="fas fa-filter"></i> اختر قسم أو استخدم البحث والفرز</div>
+        </div>
+
+        <div class="chips" id="chips"></div>
+
+        <div class="sections-panel" aria-label="sections panel">
+          <div class="sections-head">
+            <div class="title"><i class="fas fa-layer-group"></i> الأقسام</div>
+            <div class="count"><span id="secCount">—</span> قسم</div>
+          </div>
+          <div class="sections-grid" id="sectionsGrid"></div>
+        </div>
+      </div>
+    </section>
+
+    <div id="menuRoot" class="grid"></div>
+
+    <div id="emptyState" class="empty">
+      <i class="fas fa-magnifying-glass"></i>
+      <h3>لم يتم العثور على منتجات</h3>
+      <p>جرّب كلمات مختلفة أو اضغط "الكل" لإظهار القائمة كاملة.</p>
+    </div>
+  </main>
+
+  <div class="modal-backdrop" id="modal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true">
+      <div class="modal-top">
+        <h3 id="mTitle"></h3>
+        <button class="btn" onclick="closeModal()" type="button">
+          <i class="fas fa-xmark"></i>
+          إغلاق
+        </button>
+      </div>
+      <div class="modal-body">
+        <img id="mImg" class="modal-image" alt="صورة المنتج" />
+        <div class="modal-grid">
+          <div style="display:none"></div><!-- removed description column -->
+          <div class="modal-side">
+            <div class="m-price" id="mPrice"></div>
+            <div class="m-tag" id="mTag"></div>
+            <div class="m-badge" id="mBadge"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="float-stack" aria-label="floating actions">
+    <div class="wa-box" aria-label="WhatsApp box">
+      <a id="waBtn" href="https://wa.me/966538664050" target="_blank" rel="noopener" title="اطلب عبر واتساب">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+    <button class="up-btn" id="upBtn" type="button" title="أعلى الصفحة" aria-label="Scroll to top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+  </div>
+
+<script>
+const PLACEHOLDER_IMG = "images/placeholder.jpg";
+const WHATSAPP_PHONE  = "966538664050";
+
+const MENU_DATA = [
+  {
+    id:"coffee",
+    name:"قهوة ساخنة",
+    items:[
+      {name:"أمريكانو",price:11,tag:"Hot",badge:"الأكثر طلبًا",img:"images/Americano-hot.jpg"},
+      {name:"كابتشينو",price:15,tag:"Hot",badge:"كلاسيك",img:"images/كابتشينو.jpeg"},
+      {name:"لاتية كلاسيك",price:15,tag:"Hot",badge:"مميز",img:"images/latte.jpg"},
+      {name:"كولمبي او اثيـوبي في60",price:15,tag:"Hot",badge:"V60",img:"images/colombia.png"},
+      {name:"كورتادو",price:13,tag:"Hot",badge:"ناعم",img:"images/كورتادو.png"},
+      {name:"اسبريسو دبل",price:13,tag:"Hot",badge:"قوي",img:"images/esbrso_duble.png"},
+      {name:"فلات وايت",price:15,tag:"Hot",badge:"مفضل",img:"images/flat_white.jpg"},
+      {name:"لاتيه -فلافور- كراميل- فانيليا",price:15,tag:"Hot",badge:"فلافور",img:"images/lateha.jfif"},
+      {name:"مكياتو",price:14,tag:"Hot",badge:"مركز",img:"images/ميكاتو.png"},
+      {name:"موكا",price:15,tag:"Hot",badge:"شوكولاتة",img:"images/hot-mocha.jpg"},
+      {name:"اسبريسو سنقل",price:10,tag:"Hot",badge:"سنقل",img:"images/espresso.jpg"},
+      {name:"سبانش لاتيه حار",price:15,tag:"Hot",badge:"سبانش",img:"images/spanish-latte-square.jpg"},
+      {name:"قهوة اليوم حار",price:10,tag:"Hot",badge:"Daily",img:"images/قهوه اليوم حار.jpeg"},
+      {name:"تركي- ساده-محوج - فاتح او غامق",price:10,tag:"Hot",badge:"تركي",img:"images/تركى ساده.jpeg"},
+      {name:"قهوة فرنساوي",price:15,tag:"Hot",badge:"تركي",img:"images/قهوة فرنساوي.jpg"},
+      {name:"هوت شوكلت",price:16,tag:"Hot",badge:"الأكثر طلبًا",img:"images/هوت شوكلت.jfif"},
+      {name:"دله قهوه عربي",price:20,tag:"Hot",badge:"تركي",img:"images/دله قهوه عربي.jpg"},
+      {name:"كوب قهوه عربي",price:20,tag:"Hot",badge:"تركي",img:"images/قهوه عربي.jfif"},
+      {name:"نسكافيه",price:13,tag:"Hot",badge:"سريع",img:"images/نسكافيه.jpeg"}
+    ]
+  },
+  {
+    id:"coffee-cold",
+    name:"قهوة باردة",
+    items:[
+      {name:"امريكانو",price:10,tag:"Cold Coffee",badge:"منعش",img:"images/latte.jpg"},
+      {name:"ايس لاتيه كلاسيك",price:13,tag:"Cold Coffee",badge:"كلاسيك",img:"images/ايس لاتيه كلاسيك.jpeg"},
+      {name:"كولومبي او اثيوبي في60",price:14,tag:"Cold Coffee",badge:"V60",img:"images/latte.jpg"},
+      {name:"فرابتشينوا",price:14,tag:"Cold Coffee",badge:"فروستي",img:"images/espresso.jpg"},
+      {name:"ايس لاتيه -فلافور - كراميل -فانيليا-بلو-فروله-فستق",price:16,tag:"Cold Coffee",badge:"فلافور",img:"images/ايس لاتيه فلافور.jpeg"},
+      {name:"ايس لاتيه تراميسو",price:15,tag:"Cold Coffee",badge:"تراميسو",img:"images/ايس لاتيه تراميسو.jpeg"},
+      {name:"ايس مكياتو",price:14,tag:"Cold Coffee",badge:"مركز",img:"images/ايس مكايتو.jpeg"},
+      {name:"ايس موكا",price:15,tag:"Cold Coffee",badge:"شوكولاتة",img:"images/ايس موكا.jpeg"},
+      {name:"ايس بستاشيو لاتيه",price:16,tag:"Cold Coffee",badge:"فستق",img:"images/ايس بستاشيو لاتيه.jpeg"},
+      {name:"ايس اسبنش لاتيه",price:15,tag:"Cold Coffee",badge:"سبانش",img:"images/ايس اسبنش لاتيه.png"},
+      {name:"لاتيه كندر",price:15,tag:"Cold Coffee",badge:"حلو",img:"images/لاتيه كندر.jpeg"},
+      {name:"قهوة اليوم",price:7,tag:"Cold Coffee",badge:"Daily",img:"images/قهوه اليوم.jpeg"}
+    ]
+  },
+  {
+    id:"cold",
+    name:"مشروبات باردة",
+    items:[
+      {name:"افوكادو مانجو",price:18,tag:"Cold",badge:"Fresh",img:"images/افوكادو مانجو.jpeg"},
+      {name:"بيناكولادا- اناناس-جوز هند-حليب",price:18,tag:"Cold",badge:"Tropical",img:"images/بيناكولادا.png"},
+      {name:"بينكمون - فروله-مانجو- حليب",price:18,tag:"Cold",badge:"Signature",img:"images/طاوله.jpeg"},
+      {name:"سجنتشر فايف سلاش",price:20,tag:"Cold",badge:"Signature",img:"images/طاوله.jpeg"},
+      {name:"فروت سلاط",price:25,tag:"Cold",badge:"Premium",img:"images/فروت سلاط.jpeg"},
+      {name:"فته اوريو",price:18,tag:"Cold",badge:"Oreo",img:"images/فته اوريو.jpeg"},
+      {name:"ميلك شيك اوريو",price:15,tag:"Cold",badge:"Milkshake",img:"images/ميلك شيك اوريو.jpeg"},
+      {name:"برتقال",price:14,tag:"Cold",badge:"Natural",img:"images/برتقال.jpeg"},
+      {name:"افوكادو -عسل-مكسرات",price:16,tag:"Cold",badge:"Energy",img:"images/افوكادوا عسل مكسرات.jpeg"},
+      {name:"افوكادو كلاسيك",price:14,tag:"Cold",badge:"Classic",img:"images/فوكادو كلاسيك.png"},
+      {name:"جوافه",price:14,tag:"Cold",badge:"Natural",img:"images/جوافه.jpeg"},
+      {name:"كركديه  بارد",price:15,tag:"Cold",badge:"Herbal",img:"images/كركديه  بارد.jpeg"},
+      {name:"كيوي",price:14,tag:"Cold",badge:"Fruit",img:"images/كيوي.jpeg"},
+      {name:"موهيتو كودرد",price:16,tag:"Cold",badge:"Fruit",img:"images/موهيتو كودرد.png"},
+      {name:"مانجو",price:14,tag:"Cold",badge:"Fruit",img:"images/مانجو.jpeg"},
+      {name:"اناناس",price:14,tag:"Cold",badge:"Fruit",img:"images/اناناس.jpeg"},
+      {name:"فراوله",price:14,tag:"Cold",badge:"Fruit",img:"images/فراوله.jpeg"},
+      {name:"بطيخ",price:14,tag:"Cold",badge:"Fruit",img:"images/بطيخ.jpeg"},
+      {name:"اوريو",price:14,tag:"Cold",badge:"Oreo",img:"images/اوريو.jpeg"},
+      {name:"عور قلب",price:15,tag:"Cold",badge:"Fruit",img:"images/عور قلب.jfif"},
+	  {name:"انتعاش",price:15,tag:"Cold",badge:"Fruit",img:"images/انتعاش.jpg"},
+	  {name:"موز",price:14,tag:"Cold",badge:"Fruit",img:"images/موز.jpeg"},
+	  {name:"عرايسي",price:15,tag:"Cold",badge:"Fruit",img:"images/عرايسي.jfif"},
+      {name:"بارد",price:8,tag:"Cold",badge:"Simple",img:"images/iced-tea.jpg"}
+    ]
+  },
+  {
+    id:"smoothie",
+    name:"سموذي",
+    items:[
+      {name:"موهيتو كلاسيك",price:12,tag:"Smoothie",badge:"Mint",img:"images/موهيتو كلاسيك.jpeg"},
+      {name:"سموذي جوافه",price:16,tag:"Smoothie",badge:"Guava",img:"images/سموذي جوافه.jpeg"},
+      {name:"سموذي مانجو",price:16,tag:"Smoothie",badge:"Mango",img:"images/سموذي مانجو.jpeg"},
+      {name:"موهيتو -نكهه",price:14,tag:"Smoothie",badge:"Flavor",img:"images/موهيتو -نكهه.jpeg"},
+      {name:"سموذي برتقال",price:16,tag:"Smoothie",badge:"Orange",img:"images/سموزى برتقال.jpeg"},
+      {name:"سموذي اناناس",price:16,tag:"Smoothie",badge:"Pineapple",img:"images/سموزى انااس.jpeg"},
+      {name:"سموذي فراوله",price:16,tag:"Smoothie",badge:"Strawberry",img:"images/سموزى فراوله.jpeg"},
+      {name:"سموذي بطيخ",price:16,tag:"Smoothie",badge:"Watermelon",img:"images/سموذي بطيخ.jpeg"},
+      {name:"شاي مثلج خوخ",price:15,tag:"Smoothie",badge:"Peach",img:"images/شاي مثلج خوخ.png"},
+      {name:"أيس ماتشا",price:14,tag:"Smoothie",badge:"Matcha",img:"images/أيس ماتشا.png"}
+    ]
+  },
+  {
+    id:"tea",
+    name:"شاي",
+    items:[
+      {name:"يانسون",price:6,tag:"Tea",badge:"Herbal",img:"images/يانسون.png"},
+      {name:"قرفه",price:6,tag:"Tea",badge:"Warm",img:"images/قرفه.png"},
+      {name:"شاي بالزنجبيل",price:7,tag:"Tea",badge:"Classic",img:"images/شاي بالزنجبيل.png"},
+      {name:"زنجبيل",price:6,tag:"Tea",badge:"Ginger",img:"images/زنجبيل.png"},
+      {name:"زنجبيل -ليمون - عسل",price:6,tag:"Tea",badge:"Honey",img:"images/زنجبيل -ليمون - عسل.png"},
+      {name:"شاي مثلج",price:15,tag:"Tea",badge:"Iced",img:"images/شاي مثلج.png"},
+      {name:"ماتشا",price:15,tag:"Tea",badge:"Matcha",img:"images/ماتشا.png"},
+      {name:"كوب شاي",price:5,tag:"Tea",badge:"Classic",img:"images/كوب شاي.png"},
+      {name:"براد شاي",price:15,tag:"Tea",badge:"Pot",img:"images/براد شاي.jpg"},
+      {name:"براد شاي كرك",price:25,tag:"Tea",badge:"Pot",img:"images/كرك.png"},
+      {name:"كوب شاي كرك",price:7,tag:"Tea",badge:"Pot",img:"images/كوب كرك.png"},
+      {name:"مياة",price:1,tag:"Water",badge:"Basic",img:"images/مياة.png"},
+      {name:"أيس ماتشا",price:14,tag:"Tea",badge:"Iced",img:"images/أيس ماتشا.png"},
+      {name:"شاي اخضر",price:6,tag:"Tea",badge:"Green",img:"images/شاي اخضر.png"},
+      {name:"هوت شوكليت",price:13,tag:"Hot",badge:"Chocolate",img:"images/هوت شوكليت.jpeg"},
+      {name:"شاي بلبن",price:7,tag:"Tea",badge:"Milk",img:"images/شاي بلبن.jpeg"},
+      {name:"مستشفي",price:7,tag:"Hot",badge:"Warm",img:"images/مستشفي.png"},
+      {name:"سحلب",price:15,tag:"Hot",badge:"الأكثر طلبًا",img:"images/سحلب.jpeg"},
+      {name:"سحلب فواكه",price:18,tag:"Hot",badge:"Fruit",img:"images/سحلب فواكه.png"}
+    ]
+  },
+  {
+    id:"desserts",
+    name:"حلويات",
+    items:[
+      {name:"وافل",price:17,tag:"Dessert",badge:"",img:"images/وافل.png"},
+      {name:"وافل فايف اسلاش",price:20,tag:"Dessert",badge:"Signature",img:"images/وافل فايف اسلاش.png"},
+      {name:"كيكه عسل",price:15,tag:"Dessert",badge:"الأكثر طلبًا",img:"images/كيكه عسل.png"},
+      {name:"روشية كيك",price:15,tag:"Dessert",badge:"Fresh",img:"images/روشية كيك.png"},
+      {name:"كيك نوتيلا",price:15,tag:"Dessert",badge:"الأفضل مبيعاً",img:"images/كيك نوتيلا.png"},
+      {name:"سان سبستيان",price:15,tag:"Dessert",badge:"الأكثر طلبًا",img:"images/سان سبستيان.png"},
+      {name:"تشيز فروله",price:15,tag:"Dessert",badge:"Cheese",img:"images/تشيز فروله.png"},
+      {name:"تشيز بلو بيري",price:15,tag:"Dessert",badge:"Cheese",img:"images/تشيز بلو بيري.png"},
+      {name:"مكسرات",price:14,tag:"Dessert",badge:"Nuts",img:"images/مكسرات.png"},
+      {name:"كروسون",price:10,tag:"Dessert",badge:"Fresh",img:"images/كروسون.jpeg"},
+      {name:"ترميسو",price:15,tag:"Dessert",badge:"Fresh",img:"images/ترميسو.jpeg"}
+    ]
+  },
+  {
+id:"games",
+    name:"العاب",
+    items:[
+      {name:"playstation",price:15,tag:"games",badge:"",img:"images/playstation.jfif"},
+      {name:"ضومنه",price:0,tag:"games",badge:"free",img:"images/ضومنه.png"}
+    ]
+  }
+];
+
+const root = document.getElementById("menuRoot");
+const chips = document.getElementById("chips");
+const sectionsGrid = document.getElementById("sectionsGrid");
+const secCount = document.getElementById("secCount");
+
+const q = document.getElementById("q");
+const emptyState = document.getElementById("emptyState");
+const sortSel = document.getElementById("sort");
+
+const modal = document.getElementById("modal");
+const mTitle = document.getElementById("mTitle");
+const mImg = document.getElementById("mImg");
+const mPrice = document.getElementById("mPrice");
+const mTag = document.getElementById("mTag");
+const mBadge = document.getElementById("mBadge");
+
+const statItems = document.getElementById("statItems");
+const statSections = document.getElementById("statSections");
+
+let active = "all";
+
+function norm(s){ return String(s || "").toLowerCase().trim(); }
+function matches(item, query){
+  if(!query) return true;
+  const t = norm(item.name) + " " + norm(item.tag) + " " + norm(item.badge);
+  return t.includes(norm(query));
+}
+function safeImg(img){
+  const s = String(img || "").trim();
+  return s ? s : PLACEHOLDER_IMG;
+}
+
+function sectionIcon(id){
+  if(id === "all") return "fa-layer-group";
+  if(id.includes("coffee")) return "fa-mug-hot";
+  if(id === "cold") return "fa-snowflake";
+  if(id === "smoothie") return "fa-leaf";
+  if(id === "tea") return "fa-mug-saucer";
+  if(id === "desserts") return "fa-cookie-bite";
+  if(id === "games") return "fa-gamepad";
+  return "fa-star";
+}
+
+function buildChipsAndMobileSections(){
+  chips.innerHTML = "";
+  sectionsGrid.innerHTML = "";
+
+  const list = [{id:"all", name:"الكل"}].concat(MENU_DATA.map(s => ({id:s.id, name:s.name})));
+
+  list.forEach((sec) => {
+    let count = 0;
+    if(sec.id === "all"){
+      MENU_DATA.forEach(s => {
+        count += (s.items || []).filter(i => matches(i, q.value)).length;
+      });
+    } else {
+      const s = MENU_DATA.find(x => x.id === sec.id);
+      count = (s?.items || []).filter(i => matches(i, q.value)).length;
+    }
+
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "chip" + (active === sec.id ? " active" : "");
+    b.innerHTML = `<i class="fas ${sectionIcon(sec.id)}"></i><span>${sec.name}</span>`;
+    b.onclick = () => { active = sec.id; sync(); scrollToMenuTop(); };
+    chips.appendChild(b);
+
+    const card = document.createElement("button");
+    card.type = "button";
+    card.className = "sec-card" + (active === sec.id ? " active" : "");
+    card.innerHTML = `
+      <div class="sec-left">
+        <div class="sec-name">${sec.name}</div>
+        <div class="sec-count">${count} منتج</div>
+      </div>
+      <div class="sec-ico"><i class="fas ${sectionIcon(sec.id)}"></i></div>
+    `;
+    card.onclick = () => { active = sec.id; sync(); scrollToMenuTop(); };
+    sectionsGrid.appendChild(card);
+  });
+
+  secCount.textContent = String(MENU_DATA.length);
+}
+
+function sortItems(items){
+  const mode = sortSel.value || "default";
+  const arr = items.slice();
+
+  if(mode === "price-asc") arr.sort((a,b) => (Number(a.price||0) - Number(b.price||0)));
+  else if(mode === "price-desc") arr.sort((a,b) => (Number(b.price||0) - Number(a.price||0)));
+  else if(mode === "name-asc") arr.sort((a,b) => String(a.name||"").localeCompare(String(b.name||""), 'ar'));
+
+  return arr;
+}
+
+function render(){
+  root.innerHTML = "";
+  emptyState.style.display = "none";
+
+  let hasItems = false;
+
+  MENU_DATA.forEach(sec => {
+    if(active !== "all" && active !== sec.id) return;
+
+    let filtered = (sec.items || []).filter(i => matches(i, q.value));
+    if(filtered.length === 0) return;
+
+    filtered = sortItems(filtered);
+    hasItems = true;
+
+    const wrap = document.createElement("div");
+    wrap.className = "section";
+    wrap.id = "sec-" + sec.id;
+
+    const head = document.createElement("div");
+    head.className = "section-head";
+    head.innerHTML = `
+      <div class="section-title">
+        <span class="dot"></span>
+        <span>${sec.name}</span>
+      </div>
+      <div class="count">${filtered.length} منتج</div>
+    `;
+    wrap.appendChild(head);
+
+    const cards = document.createElement("div");
+    cards.className = "cards";
+
+    filtered.forEach(i => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.setAttribute("tabindex", "0");
+
+      const thumb = document.createElement("div");
+thumb.className = "thumb";
+const imgUrl = safeImg(i.img);
+
+const img = document.createElement("img");
+img.src = imgUrl;
+img.alt = i.name || "Product image";
+img.style.width = "100%";
+img.style.height = "100%";
+img.style.objectFit = "contain";  // This shows full image without cropping
+img.style.objectPosition = "center";
+
+img.onerror = () => {
+  img.onerror = null;
+  img.src = PLACEHOLDER_IMG;
+};
+
+thumb.appendChild(img);
+
+      const tag = document.createElement("div");
+      tag.className = "tag";
+      tag.innerHTML = `<i class="fas fa-bolt"></i><span>${i.tag || "Menu"}</span>`;
+      thumb.appendChild(tag);
+
+      const content = document.createElement("div");
+      content.className = "content";
+      content.innerHTML = `
+        <div class="title">${i.name || ""}</div>
+        <div class="meta">
+          <div class="price">${Number(i.price||0)} <small>ر.س</small></div>
+          <div class="badge" title="${i.badge || "تفاصيل"}">${i.badge || "تفاصيل"}</div>
+        </div>
+      `;
+
+      card.appendChild(thumb);
+      card.appendChild(content);
+
+      card.onclick = () => openModal(i, sec.name);
+      card.onkeydown = (e) => { if(e.key === "Enter") openModal(i, sec.name); };
+
+      cards.appendChild(card);
+    });
+
+    wrap.appendChild(cards);
+    root.appendChild(wrap);
+  });
+
+  if(!hasItems){
+    emptyState.style.display = "block";
+  }
+}
+
+function openModal(i, sectionName){
+  mTitle.textContent = i.name || "";
+  mPrice.textContent = `${Number(i.price || 0)} ر.س`;
+  mTag.textContent   = sectionName ? `القسم: ${sectionName} • ${i.tag || ""}` : (i.tag || "");
+  mBadge.textContent = i.badge || "تفاصيل";
+
+  const imgUrl = safeImg(i.img);
+  mImg.style.display = "block";
+  mImg.src = imgUrl;
+  mImg.onerror = () => {
+    mImg.onerror = null;
+    mImg.src = PLACEHOLDER_IMG;
+  };
+
+  modal.style.display = "flex";
+  modal.setAttribute("aria-hidden", "false");
+
+  modal.onclick = (e) => { if(e.target === modal) closeModal(); };
+}
+
+function closeModal(){
+  modal.style.display = "none";
+  modal.setAttribute("aria-hidden", "true");
+}
+
+let t = null;
+q.addEventListener("input", () => {
+  clearTimeout(t);
+  t = setTimeout(() => { render(); updateStats(); buildChipsAndMobileSections(); }, 160);
+});
+
+sortSel.addEventListener("change", () => { render(); });
+
+document.getElementById("btnAll").onclick = () => {
+  active = "all";
+  q.value = "";
+  sortSel.value = "default";
+  sync();
+  scrollToMenuTop();
+};
+
+document.addEventListener("keydown", (e) => {
+  if(e.key === "Escape") closeModal();
+});
+
+function updateStats(){
+  let sections = MENU_DATA.length;
+  let items = 0;
+
+  MENU_DATA.forEach(s => {
+    const list = (s.items || []).filter(i => {
+      if(active !== "all" && active !== s.id) return false;
+      return matches(i, q.value);
+    });
+    items += list.length;
+  });
+
+  statSections.textContent = sections;
+  statItems.textContent = items;
+}
+
+function scrollToMenuTop(){
+  const hero = document.querySelector(".hero");
+  const y = hero ? (hero.getBoundingClientRect().bottom + window.scrollY + 8) : 0;
+  window.scrollTo({ top: y, behavior: "smooth" });
+}
+
+function sync(){
+  buildChipsAndMobileSections();
+  render();
+  updateStats();
+}
+
+const waBtn = document.getElementById("waBtn");
+waBtn.href = "https://wa.me/" + WHATSAPP_PHONE;
+
+document.getElementById("upBtn").onclick = () => {
+  window.scrollTo({top:0, behavior:"smooth"});
+};
+
+sync();
+</script>
+
+</body>
+</html>
